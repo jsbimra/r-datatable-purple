@@ -1,0 +1,104 @@
+
+.app{
+  overflow: hidden;
+  position: relative;
+}
+
+.app-body {
+  font-size: 13px;
+  /* min-height: 100vh; */
+}
+.app-header {
+  text-align: center;
+  transition: all .7s cubic-bezier(0.68, 0.65, 0.25, 1.62);
+  background-color: #282c34;
+  position: absolute;
+  min-width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  margin-bottom: 15px;
+}
+
+.app-header h1 {
+  transform: scale(0.85);
+}
+
+.flash-out .app-header{
+  transform: translateY(0%);
+  min-height: 0;
+  position: static;
+}
+
+.flash-out .app-header h1{
+  transform: scale(1);
+}
+.app-header a {
+  color: #fff;
+}
+
+.filter-icon {
+  position: absolute;
+  right: 5%;
+  top: 35%;
+}
+
+.filter-panel {
+  width: 30%;
+  height: 100%;
+  background: #fff;
+  position: absolute;
+  right: -1000px;
+  top: 119px;
+  padding: 20px;
+  box-shadow: 0px 4px 7px 3px rgba(219, 219, 220, 0.48);
+  transition: all .6s cubic-bezier(0.24, 1.15, 1, 1);
+  opacity: 0;
+  z-index: 100;
+}
+
+.filter-panel.active {
+  opacity: 1;
+  right: 0;
+}
+
+
+.grid-table-panel {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height: 450px;
+  overflow-y: auto;
+}
+
+.tabular-info {
+  margin: 20px 0;
+}
+.tabular-info h5 { vertical-align: middle; margin-right: 20px; padding-right: 20px; border-right: 1px solid lightgray;}
+.tabular-info h5 span{
+  color: #6d6d6d;
+}
+
+.tabular-info strong {
+  vertical-align: middle;
+}
+
+.tabular-info .form-control.goto-input{
+  width: 55px;
+  text-align: center;
+  flex: 0;
+}
+
+.tabular-info .input-group{
+  margin-left: 10px;
+  flex:0;
+  width: auto;
+}
+
+.pagination{
+  justify-content: center;
+  flex:0;
+}
