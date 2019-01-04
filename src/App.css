@@ -2,6 +2,8 @@
 .app{
   overflow: hidden;
   position: relative;
+  min-height: 100vh;
+  padding-bottom: 20px;
 }
 
 .app-body {
@@ -22,6 +24,7 @@
   font-size: calc(10px + 2vmin);
   color: white;
   margin-bottom: 15px;
+  z-index: 100;
 }
 
 .app-header h1 {
@@ -48,7 +51,7 @@
 }
 
 .filter-panel {
-  width: 30%;
+  width: 25%;
   height: 100%;
   background: #fff;
   position: absolute;
@@ -70,7 +73,7 @@
 .grid-table-panel {
   margin-top: 20px;
   margin-bottom: 20px;
-  height: 450px;
+  height: 430px;
   overflow-y: auto;
 }
 

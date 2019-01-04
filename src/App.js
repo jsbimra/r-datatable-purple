@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import API from './api/service';
-import Filter from './component/Filter';
 import DataTable from './component/DataTable';
 import './App.css';
 
@@ -16,7 +15,8 @@ class App extends Component {
       title: 'Getting your lab ready!',
       icon: ['fas', 'mug-hot']
     },
-    fetchedData: []
+    fetchedData: [],
+    defaultItems: 5
   }
   constructor(props) {
     super(props);
@@ -24,6 +24,7 @@ class App extends Component {
     this.showFilter = this.showFilter.bind(this);
     this.closeFilter = this.closeFilter.bind(this);
     this.flashHeader = this.flashHeader.bind(this);
+
   }
 
   componentWillMount() {
@@ -57,22 +58,12 @@ class App extends Component {
     body.classList.add('flash-out');
   }
 
-
-  renderFilter() {
-    return (
-      <Filter
-        cssClassname={this.state.isFilterTrigged ? 'active' : ''}
-        onCloseFilter={this.closeFilter}
-      />
-
-    );
-  }
-
   render() {
     return (
       <div className="app">
         <header className="app-header">
-          <h1>{this.state.heading.title}  <br />
+          <h1>
+            {this.state.heading.title}  <br />
             {this.state.heading.icon ? (<FontAwesomeIcon icon={this.state.heading.icon} />) : ''}
           </h1>
 
@@ -85,14 +76,13 @@ class App extends Component {
 
         <div className="container-fluid app-body">
           {this.state.fetchedData.length ? (
-            <div>
               <DataTable 
                 gridData={this.state.fetchedData}
-                defaultItems={5}
+                defaultItems={this.state.defaultItems}
+                isFilterTrigged={this.state.isFilterTrigged}
+                onCloseFilter={this.closeFilter}
               />
-            </div>
           ) : 'No data to display!!'}
-          {this.renderFilter()}
         </div>
       </div>
     );

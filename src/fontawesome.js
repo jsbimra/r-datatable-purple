@@ -1,7 +1,7 @@
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {fab} from '@fortawesome/free-brands-svg-icons';
-import { faCoffee, faCog, faMugHot, faVials, faTimes  } from '@fortawesome/free-solid-svg-icons';
+import { faCoffee, faCog, faMugHot, faVials, faTimes, faCaretUp, faCaretDown  } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
     fab, 
@@ -10,4 +10,6 @@ library.add(
     faMugHot,
     faVials,
     faTimes,
+    faCaretUp, 
+    faCaretDown,
 );
