@@ -24,7 +24,7 @@ class Pagination extends Component {
 
     handlePageInputChange(e) {
         const val = e.target.value;
-        console.log(val);
+        //console.log(val);
         if (val.length)
             this.setState({ gotoPageNo: parseFloat(val) });
         else 
@@ -33,7 +33,7 @@ class Pagination extends Component {
 
     handlePageInputKeyDown(e) {
         const keyCode = e.keyCode;
-        console.log(keyCode);
+        //console.log(keyCode);
 
         if(keyCode === 13) {
             this.gotoPage();
@@ -46,7 +46,7 @@ class Pagination extends Component {
     }
 
     gotoPage() {
-        console.log('go to page ');
+        //console.log('go to page ');
         const { totalRecords, gotoPageNo, defaultItems, currentPage } = this.state;
 
         if (gotoPageNo && gotoPageNo <= (totalRecords/defaultItems)) {
@@ -56,13 +56,13 @@ class Pagination extends Component {
             this.setState({ currentPage: gotoPageNo, prevCnt, nextCnt });
             this.handlePage({ prevCnt, nextCnt });
         } else {
-            console.error('Sorry, no page exists');
+            //console.error('Sorry, no page exists');
         }
     }
 
     handlePrevious() {
-        console.clear();
-        console.log('Previous Trigger ');
+        //console.clear();
+        //console.log('Previous Trigger ');
         let { prevCnt, nextCnt, defaultItems, currentPage } = this.state;
         if (prevCnt > 0) {
             prevCnt = parseFloat(prevCnt) - defaultItems;
@@ -74,8 +74,8 @@ class Pagination extends Component {
     }
 
     handleNext() {
-        console.clear();
-        console.log('Next Trigger ');
+        //console.clear();
+        //console.log('Next Trigger ');
         let { prevCnt, nextCnt, defaultItems, currentPage, totalRecords } = this.state;
 
         if (nextCnt < totalRecords) {

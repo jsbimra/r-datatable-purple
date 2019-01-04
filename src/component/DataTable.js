@@ -9,7 +9,13 @@ class DataTable extends Component {
         gridData: [],
         dataTableRecords: [],
         totalRecords: 0,
-        viewItems: 0
+        viewItems: 0,
+        direction: {
+            ID: 'desc',
+            Title: 'desc',
+            PageCount: 'desc',
+            PublishDate: 'desc',
+        }
     }
 
     constructor(props) {
@@ -21,12 +27,51 @@ class DataTable extends Component {
     }
 
     sortBy(type) {
-        console.log('sortBy type ', type);
+        console.clear();
+
+        let key = type !== '' ? type.replace(/ /gi, '') : null;
+        if (!key) return;
+
+        //console.log('sortBy type ', type, 'direction', this.state.direction[type]);
+
+        const { dataTableRecords, direction } = this.state;
+        let sortedData = [];
+        switch (key) {
+            case 'Title':
+                sortedData = (direction && direction[key] === 'asc' ?
+                    dataTableRecords.sort((a, b) => {
+                        const [aLast, aFirst] = a[key].split(' ');
+                        const [bLast, bFirst] = a[key].split(' ');
+
+                        return aLast > bLast ? 1 : -1;
+                    }) : dataTableRecords.sort((a, b) => {
+                        const [aLast, aFirst] = a[key].split(' ');
+                        const [bLast, bFirst] = a[key].split(' ');
+
+                        return bLast > aLast ? 1 : -1;
+                    }))
+
+                this.setState({ dataTableRecords: sortedData });
+                break;
+
+            default:
+                sortedData = (direction && direction[key] === 'asc' ?
+                    dataTableRecords.sort((a, b) => {
+                        return a[key] > b[key] ? 1 : -1;
+                    }) : dataTableRecords.sort((a, b) =>{
+                        return b[key] > a[key] ? 1 :-1;
+                    }));
+                this.setState({ dataTableRecords: sortedData });
+                break;
+        }
+        
+        direction[key] = direction[key] === 'asc' ? 'desc' : 'asc';
+        this.setState({ direction });
+
     }
 
     updateViewItems(val) {
         if (val && val !== '') {
-
             if (typeof val !== "number" && val.toLowerCase() === 'all') {
                 const nextCnt = this.state.totalRecords;
                 this.setNewGridRecords({ prevCnt: 0, nextCnt });
@@ -51,14 +96,14 @@ class DataTable extends Component {
     }
 
     setNewGridRecords({ prevCnt, nextCnt }) {
-        // console.log('setNewGridRecords method called ', typeof prevCnt, typeof nextCnt, this.state.gridData);
-        console.log('prevCnt ', prevCnt, 'nxtCnt ', nextCnt);
+        // //console.log('setNewGridRecords method called ', typeof prevCnt, typeof nextCnt, this.state.gridData);
+        //console.log('prevCnt ', prevCnt, 'nxtCnt ', nextCnt);
 
         const dataTableRecords = this.state.gridData.slice(prevCnt, nextCnt);
-        console.log(dataTableRecords);
+        //console.log(dataTableRecords);
 
         if (!dataTableRecords.length) {
-            console.log('You have reached the limit');
+            //console.log('You have reached the limit');
             return;
         }
 
@@ -80,6 +125,7 @@ class DataTable extends Component {
         const newGridData = this.state.dataTableRecords ? this.state.dataTableRecords : [];
 
         if (newGridData.length) {
+            const {direction} = this.state;
             return (
                 <div>
                     <h2>Books</h2>
@@ -98,11 +144,11 @@ class DataTable extends Component {
                         <table className="table table-striped">
                             <thead>
                                 <tr>
-                                    <td width="10%"><a href="#" data-direction="asc">ID <FontAwesomeIcon icon="caret-up" /></a></td>
-                                    <td width="15%"><a href="#" data-direction="asc">Title <FontAwesomeIcon icon="caret-up" /></a></td>
-                                    <td width="49%"><a href="#" data-direction="asc">Description <FontAwesomeIcon icon="caret-up" /></a></td>
-                                    <td width="13%" className="text-center"><a href="#" data-direction="asc">Page Count <FontAwesomeIcon icon="caret-up" /></a></td>
-                                    <td width="13%" className="text-right"><a href="#" data-direction="asc">Publish Date <FontAwesomeIcon icon="caret-up" /></a></td>
+                                    <td width="10%"><a href="#" onClick={() => this.sortBy('ID')}>ID <FontAwesomeIcon icon={direction.ID === 'asc' ? 'caret-up' : 'caret-down'} /></a></td>
+                                    <td width="15%"><a href="#" onClick={() => this.sortBy('Title')}>Title <FontAwesomeIcon icon={direction.Title === 'asc' ? 'caret-up' : 'caret-down'} /></a></td>
+                                    <td width="49%">Description</td>
+                                    <td width="13%" className="text-center"><a href="#" onClick={() => this.sortBy('PageCount')}>Page Count <FontAwesomeIcon icon={direction.PageCount === 'asc' ? 'caret-up' : 'caret-down'} /></a></td>
+                                    <td width="13%" className="text-right"><a href="#" onClick={() => this.sortBy('PublishDate')}>Publish Date <FontAwesomeIcon icon={direction.PublishDate === 'asc' ? 'caret-up' : 'caret-down'} /></a></td>
                                 </tr>
                             </thead>
                             <tbody className="grid-table-panel">
