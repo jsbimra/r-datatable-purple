@@ -272,7 +272,7 @@ class DataTable extends Component {
                                             <td data-editable="text" className="text-center">{item.PageCount}</td>
                                             <td data-editable="date" className="text-right">{(<FormatDate date={item.PublishDate} />)}</td>
                                             <td className="text-center">
-                                                <a href="#" onClick={(e) => this.edit(item.ID)} ref={`editRef${item.ID}`}><FontAwesomeIcon icon="edit" color="#ffcc00" /></a>
+                                                <a href="#" onClick={(e) => this.edit(item.ID)} ref={`editRef${item.ID}`}><FontAwesomeIcon icon="edit" color="" /></a>
                                                 &nbsp;|&nbsp;
                                                 <a href="#" onClick={(e) => this.delete(item.ID)}><FontAwesomeIcon icon="trash-alt" color="#cc0000" /></a>
 
