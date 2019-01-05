@@ -9,6 +9,8 @@ class Filter extends Component {
     super(props);
 
     this.closeFilterPanel = this.closeFilterPanel.bind(this);
+    this.setWrapperAroundMe = this.setWrapperAroundMe.bind(this);
+    this.handleClickOutsideMe = this.handleClickOutsideMe.bind(this);
   }
   
   closeFilterPanel(closeState) {
@@ -25,10 +27,29 @@ class Filter extends Component {
     this.props.onUpdateViewItems(e.target.value);
   }
 
+  setWrapperAroundMe(node){
+    console.log(node);
+    this.wrapperEle = node;
+  }
+
+  handleClickOutsideMe(e) {
+    if(this.wrapperEle && !this.wrapperEle.contains(e.target)){
+      this.closeFilterPanel(false);
+    }
+  }
+
+  componentDidMount(){
+    document.addEventListener('mousedown', this.handleClickOutsideMe);
+  }
+
+  componentWillUnmount(){
+    document.removeEventListener('mousedown', this.handleClickOutsideMe)
+  }
+
   render() {
 
     return (
-      <div className={`filter-panel ${this.props.cssClassname}`}>
+      <div className={`filter-panel ${this.props.cssClassname}`} ref={this.setWrapperAroundMe}>
         <a href="#" className="close" onClick={() => {
           this.closeFilterPanel(false)
         }}>

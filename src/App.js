@@ -34,7 +34,7 @@ class App extends Component {
         this.setState({ fetchedData: res });
 
         let heading = this.state.heading;
-        heading.title = 'Welcome to Stylish Lab!';
+        heading.title = 'Welcome to Code Test Lab!';
         heading.icon = '';
 
         if (res) {
