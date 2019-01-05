@@ -12,12 +12,13 @@ class App extends Component {
     isFilterTrigged: false,
     flashOut: false,
     heading: {
-      title: 'Getting your lab ready!',
+      title: 'Getting lab ready!!!',
       icon: ['fas', 'mug-hot']
     },
     fetchedData: [],
     defaultItems: 5
   }
+
   constructor(props) {
     super(props);
 
@@ -76,13 +77,20 @@ class App extends Component {
 
         <div className="container-fluid app-body">
           {this.state.fetchedData.length ? (
-              <DataTable 
+            <div>
+              <h2>Books</h2>
+              <DataTable
                 gridData={this.state.fetchedData}
                 defaultItems={this.state.defaultItems}
                 isFilterTrigged={this.state.isFilterTrigged}
                 onCloseFilter={this.closeFilter}
               />
-          ) : 'No data to display!!'}
+            </div>
+          ) : (
+              <div>
+                <div className="alert alert-danger text-center" role="alert">Oops, no records fetched.</div>
+              </div>
+            )}
         </div>
       </div>
     );

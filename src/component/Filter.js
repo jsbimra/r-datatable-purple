@@ -28,7 +28,6 @@ class Filter extends Component {
   }
 
   setWrapperAroundMe(node){
-    console.log(node);
     this.wrapperEle = node;
   }
 

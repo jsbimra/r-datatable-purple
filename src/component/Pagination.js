@@ -107,7 +107,7 @@ class Pagination extends Component {
         return (
             <div>
                 <div className="tabular-info clearfix">
-                    <h5 className="float-left"><span>{totalRecords}</span> books in store.</h5>
+                    <h5 className="float-left"><span>{totalRecords}</span> {this.props.tabularMsg}</h5>
                     <h6 className="float-left"><span>Page {`${currentPage}/${(totalRecords / defaultItems)}`}</span></h6>
                     <div className="float-right col-4">
                         <div className="input-group input-group-sm float-right">

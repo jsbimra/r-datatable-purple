@@ -1,3 +1,6 @@
+textarea.form-control {
+  height: 100px;
+}
 
 .app{
   overflow: hidden;
@@ -75,6 +78,10 @@
   margin-bottom: 20px;
   height: 430px;
   overflow-y: auto;
+}
+
+.grid-table-panel .form-control {
+  font-size: 13px;
 }
 
 .tabular-info {
